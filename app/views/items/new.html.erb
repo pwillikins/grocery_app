@@ -1,0 +1,7 @@
+<%= form_for ([@user, @item]) do |f| %>
+	<%= f.label :name %>
+	<%= f.text_field :name, placeholder: "Enter Item Name" %>
+
+  <%= f.hidden_field :user_id, value: current_user.id %>
+	<%= f.submit "Create Item" %>
+<% end %>

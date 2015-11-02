@@ -6,12 +6,11 @@ class SessionsController < ApplicationController
 
   def create
     email = params[:email]
-    password = params[:password]
     @user = User.find_by_email(email)
 
-    if @user && @user.authenticate(password)
+    if @user
       log_user_in(@user)
-      redirect_to user_items_path(user_id: current_user.id)
+      redirect_to root_path
       flash[:notice] = "Welcome back #{current_user.email}"
     else
       flash[:notice] = "Email/password incorrect"

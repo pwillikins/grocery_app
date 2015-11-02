@@ -1,9 +1,9 @@
 <h2><%= "My List of Items" %></h2>
 
 <ul>
-<% @list_of_items.each do |item| %>
-  <li><h4><%= item.name %></h4></li>
-<% end %>
+  <% @list_of_items.each do |item| %>
+    <li><h4><%= link_to item.name, products_path(item_id: item.id) %> <%= link_to '<button type="button">Remove Item</button>'.html_safe, delete_item_path(id: item.id) %> </h4></li>
+  <% end %>
 </ul>
 
-<button><%= link_to "Create New Item", new_user_item_path(user_id: current_user.id) %></button>
+<%= link_to '<button type="button">Create New Item</button>'.html_safe, new_user_item_path(user_id: current_user.id) %>

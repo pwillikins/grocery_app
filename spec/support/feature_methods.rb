@@ -3,8 +3,7 @@ module FeatureMethods
   def register_user(updated_attributes = {})
     default_attributes = {
       :email => 'example@email.com',
-      :password => 'password',
-      :password_confirmation => 'password'
+      :password => 'password'
     }
 
     attributes = default_attributes.merge(updated_attributes)
@@ -13,7 +12,7 @@ module FeatureMethods
     click_link 'Sign Up'
     fill_in 'user[email]', with: attributes[:email]
     fill_in 'user[password]', with: attributes[:password]
-    click_button 'Register'
+    click_button 'Create User'
   end
 
   def login_user(updated_attributes = {})

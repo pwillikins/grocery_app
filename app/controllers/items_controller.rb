@@ -17,5 +17,10 @@ class ItemsController < ApplicationController
 	  else
 	  	render :new
 	  end
-	end
+  end
+
+  def destroy
+    item = Item.find(params[:id])
+    item.destroy
+  end
 end

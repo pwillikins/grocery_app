@@ -1,2 +1,4 @@
 <%= 'Homepage' %>
-<%= link_to 'My Items', user_items_path(user_id: current_user.id) %>
+<% if logged_in? %>
+  <%= link_to 'My Items', user_items_path(user_id: current_user.id) %>
+<% end %>

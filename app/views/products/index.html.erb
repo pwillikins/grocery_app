@@ -1,0 +1,11 @@
+<h3><%= @item.name %></h3>
+
+<div>
+  <%= render partial: 'layouts/form' %>
+</div>
+<ul>
+  <% @products.each do |product| %>
+    <li><%= product.name %></li>
+  <% end %>
+</ul>
+

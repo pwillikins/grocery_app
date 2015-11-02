@@ -27,6 +27,8 @@ class ApplicationController < ActionController::Base
 
   private
 
+  helper_method :authenticate
+
   def authenticate
     redirect_to new_session_path, :notice => "You must be logged in to access this page." unless current_user
   end

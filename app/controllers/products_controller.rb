@@ -1,9 +1,11 @@
 class ProductsController < ApplicationController
+  before_filter :authenticate
 
   def index
     @item = Item.find(params[:item_id])
     @product = Product.new
     @products = Product.where(item_id: params[:item_id])
+    @shopping_list_item = ShoppingListItem.new
   end
 
   def new

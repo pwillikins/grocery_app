@@ -15,9 +15,11 @@
 
 <% if logged_in? %>
   <%= link_to 'Logout', logout_path %>
+  <%= link_to 'My Items', user_items_path(user_id: current_user.id) %>
 <% end %>
 
 <%= link_to 'Home', root_path %>
+<%= link_to "#{current_shopping_list.shopping_list_items.size} items on your Shopping List", cart_path  %>
 
 <%= yield %>
 

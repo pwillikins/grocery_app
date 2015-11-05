@@ -3,9 +3,23 @@
 <div>
   <%= render partial: 'layouts/form' %>
 </div>
-<ul>
-  <% @products.each do |product| %>
-    <li><%= product.name %></li>
-  <% end %>
-</ul>
 
+<table align="center" class="table table-striped">
+  <tr>
+    <th></th>
+    <th><h3>Select any items to add to your Shopping List</h3></th>
+  </tr>
+  <%= form_for @shopping_list_item do |f| %>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= f.label product.name %></td>
+        <%= f.hidden_field :product_id, value: product.id %>
+        <%= f.hidden_field :name, value: product.name %>
+        <td><%= f.submit "Add" %> </td>
+      </tr>
+    <% end %>
+  <% end %>
+  <tr>
+    <td></td>
+  </tr>
+</table>

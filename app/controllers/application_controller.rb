@@ -3,6 +3,17 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+
+  helper_method :current_shopping_list
+
+  def current_shopping_list
+    if !session[:shopping_list_id].nil?
+      ShoppingList.find(session[:shopping_list_id])
+    else
+      ShoppingList.new(name: "Today's Shopping List: #{Time.now}")
+    end
+  end
+
   helper_method :log_user_in
 
   def log_user_in(user)

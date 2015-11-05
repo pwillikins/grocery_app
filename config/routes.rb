@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   end
 
   resources :products
+  resource :cart, only: [:show]
+  resources :shopping_list_items, only: [:create, :update, :destroy]
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

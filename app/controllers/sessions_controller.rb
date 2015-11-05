@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
 
     if @user
       log_user_in(@user)
+
       redirect_to root_path
       flash[:notice] = "Welcome back #{current_user.email}"
     else

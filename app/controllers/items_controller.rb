@@ -22,5 +22,6 @@ class ItemsController < ApplicationController
   def destroy
     item = Item.find(params[:id])
     item.destroy
+    redirect_to user_items_path(user_id: current_user.id)
   end
 end

@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 
     if @user
       log_user_in(@user)
-
+      reset_shopping_list
       redirect_to root_path
       flash[:notice] = "Welcome back #{current_user.email}"
     else
@@ -21,8 +21,8 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
+    session[:shopping_list_id] = nil
     flash[:notice] = "You have logged out."
     redirect_to root_path
   end
-
 end

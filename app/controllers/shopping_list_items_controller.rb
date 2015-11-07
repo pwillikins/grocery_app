@@ -11,12 +11,11 @@ class ShoppingListItemsController < ApplicationController
 
   def create
     @shopping_list = current_shopping_list
-    @shopping_list_item = @shopping_list.shopping_list_items.new(name: params[:shopping_list_item][:name],
-                                                                 product_id: params[:shopping_list_item][:product_id],
+    @shopping_list_item = @shopping_list.shopping_list_items.new(name: params[:name],
+                                                                 product_id: params[:product_id],
                                                                  purchased: false)
-    if @shopping_list.save
-      @shopping_list_item.save
-      product = Product.find(params[:shopping_list_item][:product_id])
+    if @shopping_list_item.save
+      product = Product.find(params[:product_id])
       session[:shopping_list_id] = @shopping_list.id
       redirect_to products_path(item_id: product.item_id)
     else
@@ -27,17 +26,29 @@ class ShoppingListItemsController < ApplicationController
   def update
     @shopping_list = current_shopping_list
     @shopping_list_item = @shopping_list.shopping_list_items.find(params[:id])
-    if @shopping_list_item.update_attribute(:purchased, true)
-      redirect_to cart_path
-      @shopping_list_item = @shopping_list.shopping_list_items
-    end
+  end
+
+  def purchased
+    shopping_list_item = ShoppingListItem.find(params[:id])
+    shopping_list_item.update_attribute(:purchased, true)
+    product = Product.find(shopping_list_item.product_id)
+
+    redirect_to cart_path
   end
 
   def destroy
     @shopping_list = current_shopping_list
-    @shopping_list_item = @shopping_list.shopping_list_items.find(params[:id])
-    @shopping_list_item.destroy
-    @shopping_list_items = @shopping_list.shopping_list_items
+    if params[:product_id].present?
+      @shopping_list_item = @shopping_list.shopping_list_items.where(params[:product_id])
+      @shopping_list_item[0].destroy
+      # @shopping_list_items = @shopping_list.shopping_list_items
+      product = Product.find(params[:product_id])
+      redirect_to products_path(item_id: product.item_id)
+    else
+      @shopping_list_item = @shopping_list.shopping_list_items.where(params[:id])
+      @shopping_list_item[0].destroy
+      redirect_to cart_path
+    end
   end
 
   private

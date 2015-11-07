@@ -4,14 +4,27 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
 
+  helper_method :shopping_list_size
+
+  def shopping_list_size
+    current_shopping_list.shopping_list_items.where(purchased: false).count
+  end
+
   helper_method :current_shopping_list
 
   def current_shopping_list
     if !session[:shopping_list_id].nil?
       ShoppingList.find(session[:shopping_list_id])
     else
-      ShoppingList.new(name: "Today's Shopping List: #{Time.now}")
+      ShoppingList.create(name: "Today's Shopping List: #{Time.now}", user_id: current_user.id)
     end
+  end
+
+  helper_method :reset_shopping_list
+
+  def reset_shopping_list
+    shopping_list = ShoppingList.create(name: "Today's Shopping List: #{Time.now}", user_id: current_user.id)
+    session[:shopping_list_id] = shopping_list.id
   end
 
   helper_method :log_user_in

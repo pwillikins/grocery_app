@@ -6,6 +6,8 @@ class ProductsController < ApplicationController
     @product = Product.new
     @products = Product.where(item_id: params[:item_id])
     @shopping_list_item = ShoppingListItem.new
+    list_items = current_shopping_list.shopping_list_items
+    @added_items = @products.select { |product| list_items.collect(&:product_id).include?(product.id) }
   end
 
   def new
@@ -21,5 +23,11 @@ class ProductsController < ApplicationController
     end
   end
 
+  def destroy
+    product = Product.find(params[:id])
+    item_id = product.item_id
+    product.destroy
+    redirect_to products_path(item_id: item_id)
+  end
 
 end

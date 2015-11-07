@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   root "welcome#index"
   post "/sessions/new", to: "sessions#new"
   get "/logout", to: "sessions#destroy"
-  post "/delete", to: "items#destroy", as: 'delete_item'
+  post "/delete_item", to: "items#destroy", as: 'delete_item'
+  post "/delete_list_item", to: "shopping_list_items#destroy", as: 'delete_list_item'
+  post "/delete_product", to: "products#destroy", as: 'delete_product'
 
   resources :sessions, :only => [:destroy, :create, :new]
 
@@ -16,7 +18,8 @@ Rails.application.routes.draw do
 
   resources :products
   resource :cart, only: [:show]
-  resources :shopping_list_items, only: [:create, :update, :destroy]
+  resources :shopping_list_items, only: [:create, :update]
+  get "/purchased", to: "shopping_list_items#purchased"
 
 
   # Example of regular route:

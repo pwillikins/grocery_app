@@ -6,20 +6,18 @@
 
 <table align="center" class="table table-striped">
   <tr>
-    <th></th>
     <th><h3>Select any items to add to your Shopping List</h3></th>
+    <th></th>
   </tr>
-  <%= form_for @shopping_list_item do |f| %>
-    <% @products.each do |product| %>
-      <tr>
-        <td><%= f.label product.name %></td>
-        <%= f.hidden_field :product_id, value: product.id %>
-        <%= f.hidden_field :name, value: product.name %>
-        <td><%= f.submit "Add" %> </td>
-      </tr>
-    <% end %>
+  <% @products.each do |product| %>
+    <tr>
+      <td><%= link_to '<button type="button">Delete</button>'.html_safe, delete_product_path(id: product.id), method: :post %></td>
+      <td><h4><%= product.name %></h4></td>
+      <% if @added_items.collect(&:id).include?(product.id) %>
+        <td><%= link_to '<button type="button">Remove from Shopping List</button>'.html_safe, delete_list_item_path(product_id: product.id), method: :post %></td>
+      <% else %>
+        <td><%= link_to '<button type="button">Add to Shopping List</button>'.html_safe, shopping_list_items_path(name: product.name, product_id: product.id), method: :post %> </td>
+      <% end %>
   <% end %>
-  <tr>
-    <td></td>
   </tr>
 </table>

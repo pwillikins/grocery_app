@@ -1,0 +1,11 @@
+<div class='item-form'>
+
+  <%= form_for([@user, @item]) do |f| %>
+    <div class='field'>
+      <input class='placeholder-input' type="name" name="item[name]" id="item[name]" placeholder="Add New Item">
+    </div>
+
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <input style="margin-bottom: 8px" type="submit" value="Add" class="btn btn-default">
+  <% end %>
+</div>

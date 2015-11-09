@@ -4,19 +4,17 @@
   <%= render partial: 'layouts/form' %>
 </div>
 
-<table align="center" class="table table-striped">
-  <tr>
-    <th><h3>Select any items to add to your Shopping List</h3></th>
-    <th></th>
-  </tr>
+<h3>Select any items to add to your Shopping List</h3>
+
+<table class="table">
   <% @products.each do |product| %>
     <tr>
-      <td><%= link_to '<button type="button">Delete</button>'.html_safe, delete_product_path(id: product.id), method: :post %></td>
+      <td><a action="delete" class="btn btn-default" href="/delete_product" id="<%= product.id %>">Delete</a>
       <td><h4><%= product.name %></h4></td>
       <% if @added_items.collect(&:id).include?(product.id) %>
-        <td><%= link_to '<button type="button">Remove from Shopping List</button>'.html_safe, delete_list_item_path(product_id: product.id), method: :post %></td>
+        <td align="right"><%= button_to "Remove from List", delete_list_item_path(product_id: product.id), method: :post, class: "btn btn-default" %></td>
       <% else %>
-        <td><%= link_to '<button type="button">Add to Shopping List</button>'.html_safe, shopping_list_items_path(name: product.name, product_id: product.id), method: :post %> </td>
+        <td align="right"><%= button_to "Add to List", shopping_list_items_path(name: product.name, product_id: product.id), method: :post, class: "btn btn-default" %> </td>
       <% end %>
   <% end %>
   </tr>

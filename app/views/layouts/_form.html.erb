@@ -1,23 +1,20 @@
-<%= form_for(@product) do |f| %>
-  <% if @product.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this post from being saved:</h2>
+<div class='product-form'>
+  <%= form_for(@product) do |f| %>
+    <% if @product.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@product.errors.count, "error") %> prohibited this post from being saved:</h2>
 
-      <ul>
-        <% @product.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% @product.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="field">
+      <input type="name" class="placeholder-input" name="product[name]" id="product[name]" placeholder="Add New Product">
+      <%= f.hidden_field :item_id, value: @item.id %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.text_field :name, placeholder: "Enter Name" %>
-  </div>
-  <div class="field">
-    <%= f.hidden_field :item_id, value: @item.id %>
-  </div>
-  <div class="actions">
-    <%= f.submit "Add" %>
-  </div>
+    <input style="margin-bottom: 2px" class="btn btn-default" type="submit" value="Add">
 <% end %>
+</div>

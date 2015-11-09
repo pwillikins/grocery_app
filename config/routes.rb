@@ -3,12 +3,12 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root "welcome#index"
+  root "sessions#new"
   post "/sessions/new", to: "sessions#new"
   get "/logout", to: "sessions#destroy"
   post "/delete_item", to: "items#destroy", as: 'delete_item'
   post "/delete_list_item", to: "shopping_list_items#destroy", as: 'delete_list_item'
-  post "/delete_product", to: "products#destroy", as: 'delete_product'
+  post "/delete_product", to: "products#destroy"
 
   resources :sessions, :only => [:destroy, :create, :new]
 

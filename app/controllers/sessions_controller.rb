@@ -11,11 +11,9 @@ class SessionsController < ApplicationController
     if @user
       log_user_in(@user)
       reset_shopping_list
-      redirect_to root_path
-      flash[:notice] = "Welcome back #{current_user.email}"
+      redirect_to user_items_path(user_id: @user.id)
     else
-      flash[:notice] = "Email/password incorrect"
-      render :new
+      render :new, alert: "Email/password incorrect"
     end
   end
 

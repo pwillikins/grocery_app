@@ -1,9 +1,17 @@
-<%= form_tag('/sessions') do |f| %>
-  <%= label_tag :email %>
-  <%= text_field_tag :email %>
+<h1>Sign In</h1>
 
-  <%= label_tag :password %>
-  <%= password_field_tag :password %>
+<div class='form'>
+  <%= form_tag('/sessions') do |f| %>
+    <div class='field'>
+      <input class='placeholder-input' type="email" name="email" id="email" placeholder="Email">
+    </div>
 
-  <%= submit_tag :login, value: "Login", class: 'btn btn-default' %>
-<% end %>
+    <div class='field'>
+      <input class='placeholder-input' type="password" name="password" id="password" placeholder="Password">
+    </div>
+    <div>
+      <input class="btn btn-default" type="submit" value="Login">
+      <a class="btn btn-default" action="get" href="/users/new">Sign Up</a>
+  <% end %>
+  </div>
+</div>

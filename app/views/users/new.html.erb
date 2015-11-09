@@ -1,9 +1,18 @@
-<%= form_for @user do |f| %>
-  <%= f.label :email %>:
-  <%= f.email_field :email %><br />
+<h1>Sign Up</h1>
 
-  <%= f.label :password %>:
-  <%= f.password_field :password %><br />
 
-  <%= f.submit %>
-<% end %>
+<div class='form'>
+  <%= form_for(@user) do |f| %>
+    <div class='field'>
+      <input class='placeholder-input' type="email" name="email" id="email" placeholder="Email">
+    </div>
+
+    <div class='field'>
+      <input class='placeholder-input' type="password" name="password" id="password" placeholder="Password">
+    </div>
+    <div>
+      <input class="btn btn-default" type="submit" value="Sign Up">
+      <a class="btn btn-default" action="get" href="/sessions/new">Login</a>
+    </div>
+  <% end %>
+</div>

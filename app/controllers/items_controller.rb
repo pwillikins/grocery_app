@@ -3,6 +3,8 @@ class ItemsController < ApplicationController
 
 	def index
     @list_of_items = Item.where(user_id: current_user.id)
+    @item = Item.new
+    @user = current_user
   end
 
   def new

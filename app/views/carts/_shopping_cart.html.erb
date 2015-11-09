@@ -14,21 +14,20 @@
   </p>
 <% else %>
 
-  <table>
-    <tr>
-      <th><h3>Shopping List</h3></th>
-      <th></th>
-    </tr>
+  <h3>Shopping List</h3>
+  <table class="table">
     <% @shopping_list_items.each do |item| %>
       <tr>
         <td><%= link_to '<button type="button">Remove</button>'.html_safe, delete_list_item_path(id: item.id), method: :post %></td>
         <% if item.purchased == true %>
-          <td><p style="text-decoration:line-through;"><%= item.name %></p></td>
+          <td><h4><p style="text-decoration:line-through;"><%= item.name %></p></h4></td>
       <% else %>
-          <td><%= item.name %></td>
-          <td><%= link_to '<button type="button">Got it!</button>'.html_safe, purchased_path(id: item.id) %></td>
+          <td><h4><%= item.name %></h4></td>
+          <td align="right"><%= link_to '<button type="button">Got it!</button>'.html_safe, purchased_path(id: item.id) %></td>
       <% end %>
       </tr>
     <% end %>
   </table>
 <% end %>
+
+

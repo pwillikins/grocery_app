@@ -13,3 +13,140 @@
  *= require_tree .
  *= require_self
  */
+
+* {
+    box-sizing: border-box;
+}
+
+.item-form{
+    width: 320px;
+    /*margin: 30px auto;*/
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    transform: translateZ(0);
+    text-align: left;
+}
+
+.item-form .field {
+    position: relative;
+    margin-bottom: 10px;
+    height: 40px;
+}
+
+.item-form .field .placeholder-input {
+    position: absolute;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #aaa;
+    font-size: 16px;
+    z-index: 100;
+    transition: all 0.25s;
+}
+
+.product-form{
+    width: 320px;
+    /*margin: 30px auto;*/
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    transform: translateZ(0);
+    text-align: left;
+}
+
+.product-form .field {
+    position: relative;
+    margin-bottom: 10px;
+    height: 40px;
+}
+
+.product-form .field .placeholder-input {
+    position: absolute;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #aaa;
+    font-size: 16px;
+    z-index: 100;
+    transition: all 0.25s;
+}
+
+.form {
+    width: 320px;
+    margin: 30px auto;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    transform: translateZ(0);
+}
+.form .field {
+    position: relative;
+    margin-bottom: 10px;
+    height: 40px;
+}
+.form .field .placeholder-label {
+    position: absolute;
+    top: 14px;
+    left: 12px;
+    font-weight: 300;
+    color: #aaa;
+    cursor: text;
+    z-index: 200;
+    transition: all 0.25s;
+}
+.form .field .placeholder-label:after {
+    content: ":";
+    opacity: 0;
+    color: #333;
+    transition: all 0.25s;
+}
+.form .field .placeholder-input {
+    position: absolute;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #aaa;
+    font-size: 16px;
+    z-index: 100;
+    transition: all 0.25s;
+}
+.form .field .placeholder-input:focus, .form .field .placeholder-input.not-empty {
+    margin-left: 100px;
+    width: 220px;
+    outline: none;
+}
+.form .field .placeholder-input:focus + .placeholder-label, .form .field .placeholder-input.not-empty + .placeholder-label {
+    color: #333;
+    cursor: default;
+}
+.form .field .placeholder-input:focus + .placeholder-label:after, .form .field .placeholder-input.not-empty + .placeholder-label:after {
+    opacity: 1;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    margin: 20px;
+    color: #435757;
+    background: linear-gradient(-20deg, #d0b782 20%, #a0cecf 80%);
+    font: 500 1.2em/1.2 'Roboto', sans-serif;
+}
+
+h1 {
+    margin-top: 50px;
+    font-weight: 300;
+    color: #333;
+    text-align: center;
+}
+
+.explanation {
+    width: 500px;
+    margin: 0 auto;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.nav > .logout {
+    float: right;
+}
+

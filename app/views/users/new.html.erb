@@ -4,15 +4,21 @@
 <div class='form'>
   <%= form_for(@user) do |f| %>
     <div class='field'>
-      <%= f.text_field :email, class: 'placeholder-input', placeholder: "Email" %>
+      <label style="color:#737373" class="placeholder-label" type="email">Email</label>
+      <%= f.text_field :email, class: 'placeholder-input' %>
     </div>
 
     <div class='field'>
-      <%= f.password_field :password, class: 'placeholder-input', placeholder: "Password" %>
+      <label style="color:#737373" class="placeholder-label" type="password">Password</label>
+      <%= f.password_field :password, class: 'placeholder-input' %>
     </div>
-    <div>
+    <div align="right">
       <%= f.submit value: "Sign Up", class: "btn btn-default" %>
       <a class="btn btn-default" action="get" href="/sessions/new">Login</a>
   <% end %>
   </div>
 </div>
+
+<script>$(".placeholder-input").on("blur", function() {
+  $(this).toggleClass("not-empty", !!$(this).val());
+});</script>

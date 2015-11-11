@@ -3,15 +3,21 @@
 <div class='form'>
   <%= form_tag('/sessions') do |f| %>
     <div class='field'>
-      <input class='placeholder-input' type="email" name="email" id="email" placeholder="Email">
+      <label style="color:#737373" class="placeholder-label" type="email">Email</label>
+      <input class='placeholder-input' type="email" name="email" id="email">
     </div>
 
     <div class='field'>
-      <input class='placeholder-input' type="password" name="password" id="password" placeholder="Password">
+      <label style="color:#737373" class="placeholder-label" type="password">Password</label>
+      <input class='placeholder-input' type="password" name="password" id="password">
     </div>
-    <div>
-      <input class="btn btn-default" type="submit" value="Login">
+    <div align="right">
+      <input class="btn btn-default" type="submit" value="Sign In">
       <a class="btn btn-default" action="get" href="/users/new">Sign Up</a>
   <% end %>
   </div>
 </div>
+
+<script>$(".placeholder-input").on("blur", function() {
+  $(this).toggleClass("not-empty", !!$(this).val());
+});</script>

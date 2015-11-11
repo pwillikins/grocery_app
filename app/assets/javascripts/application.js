@@ -14,8 +14,3 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
-
-$(".placeholder-input").on("blur", function() {
-  $(this).toggleClass("not-empty", !!$(this).val());
-});
-

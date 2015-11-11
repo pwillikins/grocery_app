@@ -4,15 +4,15 @@
 <div class='form'>
   <%= form_for(@user) do |f| %>
     <div class='field'>
-      <input class='placeholder-input' type="email" name="email" id="email" placeholder="Email">
+      <%= f.text_field :email, class: 'placeholder-input', placeholder: "Email" %>
     </div>
 
     <div class='field'>
-      <input class='placeholder-input' type="password" name="password" id="password" placeholder="Password">
+      <%= f.password_field :password, class: 'placeholder-input', placeholder: "Password" %>
     </div>
     <div>
-      <input class="btn btn-default" type="submit" value="Sign Up">
+      <%= f.submit value: "Sign Up", class: "btn btn-default" %>
       <a class="btn btn-default" action="get" href="/sessions/new">Login</a>
-    </div>
   <% end %>
+  </div>
 </div>

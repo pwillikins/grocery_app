@@ -8,8 +8,7 @@ class UsersController < ApplicationController
     @user = User.new(allowed_parameters)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_path(user_id: session[:id])
-      flash[:notice] = "Welcome to Rock Your Vote #{current_user.email}"
+      redirect_to user_items_path(user_id: @user.id)
     else
       render :new
     end

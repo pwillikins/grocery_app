@@ -1,12 +1,3 @@
-<% if !@shopping_list_item.nil? && @shopping_list_item.errors.any? %>
-  <div class="alert alert-danger">
-    <ul>
-      <% @shopping_list_item.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
 <% if @shopping_list_items.size == 0 %>
   <p class="text-center">
     There are no items in your shopping cart. Please <%= link_to "go back", root_path %> and add some items to your
@@ -15,16 +6,18 @@
 <% else %>
 
   <h3>Shopping List</h3>
+
   <table class="table">
     <% @shopping_list_items.each do |item| %>
       <tr>
-        <td><%= link_to '<button type="button">Remove</button>'.html_safe, delete_list_item_path(id: item.id), method: :post %></td>
         <% if item.purchased == true %>
           <td><h4><p style="text-decoration:line-through;"><%= item.name %></p></h4></td>
-      <% else %>
+          <td></td>
+        <% else %>
           <td><h4><%= item.name %></h4></td>
-          <td align="right"><%= link_to '<button type="button">Got it!</button>'.html_safe, purchased_path(id: item.id) %></td>
+          <td><%= button_to 'Got It', purchased_path(id: item.id), class: "btn btn-default" %></td>
       <% end %>
+        <td><%= button_to 'Remove', delete_list_item_path(id: item.id), method: :post, class: "btn btn-default" %></td>
       </tr>
     <% end %>
   </table>

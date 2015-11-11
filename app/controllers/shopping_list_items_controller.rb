@@ -5,10 +5,6 @@ class ShoppingListItemsController < ApplicationController
     @shopping_list_items = current_shopping_list.shopping_list_items
   end
 
-  def new
-
-  end
-
   def create
     @shopping_list = current_shopping_list
     @shopping_list_item = @shopping_list.shopping_list_items.new(name: params[:name],
@@ -19,7 +15,7 @@ class ShoppingListItemsController < ApplicationController
       session[:shopping_list_id] = @shopping_list.id
       redirect_to products_path(item_id: product.item_id)
     else
-      render root_path
+      redirect_to products_path(item_id: product.item_id)
     end
   end
 
@@ -32,21 +28,20 @@ class ShoppingListItemsController < ApplicationController
     shopping_list_item = ShoppingListItem.find(params[:id])
     shopping_list_item.update_attribute(:purchased, true)
     product = Product.find(shopping_list_item.product_id)
-
     redirect_to cart_path
   end
 
   def destroy
     @shopping_list = current_shopping_list
     if params[:product_id].present?
-      @shopping_list_item = @shopping_list.shopping_list_items.where(params[:product_id])
-      @shopping_list_item[0].destroy
-      # @shopping_list_items = @shopping_list.shopping_list_items
       product = Product.find(params[:product_id])
-      redirect_to products_path(item_id: product.item_id)
+      item_id = product.item_id
+      @shopping_list_item = @shopping_list.shopping_list_items.find_by_product_id(params[:product_id])
+      @shopping_list_item.destroy
+      redirect_to products_path(item_id: item_id)
     else
-      @shopping_list_item = @shopping_list.shopping_list_items.where(params[:id])
-      @shopping_list_item[0].destroy
+      @shopping_list_item = @shopping_list.shopping_list_items.find(params[:id])
+      @shopping_list_item.destroy
       redirect_to cart_path
     end
   end

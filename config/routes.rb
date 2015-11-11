@@ -18,8 +18,8 @@ Rails.application.routes.draw do
 
   resources :products
   resource :cart, only: [:show]
-  resources :shopping_list_items, only: [:create, :update]
-  get "/purchased", to: "shopping_list_items#purchased"
+  resources :shopping_list_items, only: [:create, :update, :destroy]
+  post "/purchased", to: "shopping_list_items#purchased"
 
 
   # Example of regular route:

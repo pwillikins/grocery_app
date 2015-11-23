@@ -6,21 +6,20 @@ class SessionsController < ApplicationController
 
   def create
     if params[:email].present? && params[:password].present?
-      email = params[:email]
-      @user = User.find_by_email(email)
+      @user = User.where(email: params[:email], password: params[:password]).first
 
-      if @user
+      if @user.present?
         log_user_in(@user)
         reset_shopping_list
-        flash[:notice] = "You're signed in"
+        flash[:notice] = "You've successfully signed in"
         redirect_to user_items_path(user_id: @user.id)
       else
         flash[:alert] = "Email/password incorrect"
-        redirect_to sessions_new_path
+        render new_session_path
       end
     else
       flash[:alert] = "Email/Password cannot be blank"
-      redirect_to sessions_new_path
+      render new_session_path
     end
   end
 

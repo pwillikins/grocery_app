@@ -3,15 +3,6 @@
 
 <div class='form'>
   <%= form_tag('/sessions') do |f| %>
-    <% if @user.errors.any? %>
-      <div id="error_explanation">
-        <ul>
-          <% @user.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
     <div class='field'>
       <label style="color:#737373" class="placeholder-label" type="email">Email</label>
       <input class='placeholder-input' type="email" name="email" id="email">

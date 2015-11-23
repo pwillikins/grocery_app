@@ -13,6 +13,7 @@ class ShoppingListItemsController < ApplicationController
     if @shopping_list_item.save
       product = Product.find(params[:product_id])
       session[:shopping_list_id] = @shopping_list.id
+      flash[:notice] = "Added to Shopping List"
       redirect_to products_path(item_id: product.item_id)
     else
       redirect_to products_path(item_id: product.item_id)

@@ -1,4 +1,7 @@
-<h2><%= "Product Lists" %></h2>
+<%= button_to "Shopping List: #{shopping_list_size}", cart_path, method: :get, style: "color:#333333", class: "btn btn-default" %>
+<%= link_to 'Logout', logout_path, style: "color:#333333", class: "btn btn-default" %>
+
+<h2><%= "Categories" %></h2>
 
 <%= render partial: 'layouts/item_form' %>
 
@@ -10,7 +13,7 @@
       <td>
         <h4><%= link_to item.name, products_path(item_id: item.id), style: "color:#333333" %></h4>
       </td>
-      <td align="right"><%= button_to "Remove", delete_item_path(id: item.id), method: :post, class: "btn btn-default" %></td>
+      <td align="right"><%= button_to "Remove", delete_item_path(id: item.id), remote: true, method: :post, class: "btn btn-default" %></td>
     </tr>
-<% end %>
+  <% end %>
 </table>

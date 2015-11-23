@@ -1,3 +1,9 @@
+<%= button_to "Shopping List: #{shopping_list_size}", cart_path, method: :get, style: "color:#333333", class: "btn btn-default" %>
+<%= button_to 'Categories', user_items_path(user_id: current_user.id), method: :get, style: "color:#333333", class: "btn btn-default" %>
+<%= link_to 'Logout', logout_path, style: "color:#333333", class: "btn btn-default" %>
+<%= flash[:notice] %>
+
+
 <h3><%= @item.name %></h3>
 
 <div>
@@ -12,11 +18,11 @@
       <% if @added_items.collect(&:id).include?(product.id) %>
         <td><h4><%= product.name %></h4></td>
         <td align="right"><%= button_to "Remove from List", delete_list_item_path(product_id: product.id), method: :post, class: "btn btn-default" %></td>
-    <% else %>
+      <% else %>
         <td><h4><%= product.name %></h4></td>
         <td align="right"><%= button_to "Add to List", shopping_list_items_path(name: product.name, product_id: product.id), method: :post, class: "btn btn-default" %> </td>
-    <% end %>
+      <% end %>
       <td><%= button_to "Delete Product", delete_product_path(id: product.id), method: :post, class: "btn btn-default" %>
-<% end %>
+  <% end %>
   </tr>
 </table>

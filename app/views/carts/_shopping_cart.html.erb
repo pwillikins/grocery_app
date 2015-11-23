@@ -1,3 +1,6 @@
+<%= button_to 'Categories', user_items_path(user_id: current_user.id), method: :get, style: "color:#333333", class: "btn btn-default" %>
+<%= link_to 'Logout', logout_path, style: "color:#333333", class: "btn btn-default" %>
+
 <% if @shopping_list_items.size == 0 %>
   <p class="text-center">
     There are no items in your shopping cart. Please <%= link_to "go back", root_path %> and add some items to your
@@ -11,16 +14,16 @@
     <% @shopping_list_items.each do |item| %>
       <tr>
         <% if item.purchased == true %>
-          <td><h4><p style="text-decoration:line-through;"><%= item.name %></p></h4></td>
+          <td>
+            <h4><p style="text-decoration:line-through;"><%= item.name %></p></h4>
+          </td>
           <td></td>
         <% else %>
           <td><h4><%= item.name %></h4></td>
           <td><%= button_to 'Got It', purchased_path(id: item.id), class: "btn btn-default" %></td>
-      <% end %>
+        <% end %>
         <td><%= button_to 'Remove', delete_list_item_path(id: item.id), method: :post, class: "btn btn-default" %></td>
       </tr>
     <% end %>
   </table>
 <% end %>
-
-
